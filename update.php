@@ -15,10 +15,11 @@ if(isset($_GET['id'])){
         $treturn = $total - $payed;
         $etat = isset($_POST['etat']) ? $_POST['etat'] : 'En cours';
         $date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d H:i:s');
-        $stmt = $pdo->prepare('UPDATE dental_corner.appointements SET id = ?, first_name = ?,last_name = ?, atype = ?,comments = ?,total = ?,payed = ?,treturned = ?, Etat = ?, adate = ? WHERE id = ?');
-        $stmt->execute([$id, $first_name, $last_name, $type, $comments, $total, $payed, $treturn, $etat, $date,$_GET['id']]);
+        $time = isset($_POST['time']) ? $_POST['time'] : date('H:i:s');
+        $stmt = $pdo->prepare('UPDATE dental_corner.appointements SET id = ?, first_name = ?,last_name = ?, atype = ?,comments = ?,total = ?,payed = ?,treturned = ?, Etat = ?, adate = ? , tdate = ?WHERE id = ?');
+        $stmt->execute([$id, $first_name, $last_name, $type, $comments, $total, $payed, $treturn, $etat, $date,$time,$_GET['id']]);
 
-        $msg ='Created Successfully!!!';
+        $msg ='Mis à jour avec succés!';
     }
     $stmt = $pdo->prepare("SELECT * FROM dental_corner.appointements WHERE id = ?");
     $stmt -> execute([$_GET['id']]);
@@ -45,12 +46,14 @@ else{
         <input type="text" name="last_name" placeholder="Rahmani" id="name" value="<?=$appointement['last_name']?>">
         <input type="text" name="first_name" placeholder="Abd El Kader" id="email" value="<?=$appointement['first_name']?>" >
         <label for="date">Date</label>
+        <label for="time">Le Temps Prévu</label>
+        <input type="datetime-local" name="date" value="<?=date('Y-m-d\TH:i', strtotime($appointement['adate']))?>" id="title" onchange="copydate()">
+        <input type="datetime-local" name="time" value="<?=date('Y-m-d\TH:i', strtotime($appointement['tdate']))?>" >
         <label for="total">Total</label>
-        <input type="datetime-local" name="date" value="<?=date('Y-m-d\TH:i', strtotime($appointement['adate']))?>" id="title">
-        <input type="number" name="total" placeholder="1800" id="total" min="500" step="100" value="<?=$appointement['total']?>">
         <label for="payed">Payé</label>
-        <label for="etat">Ètat</label>
+        <input type="number" name="total" placeholder="1800" id="total" min="500" step="100" value="<?=$appointement['total']?>">
         <input type="number" name="payed" placeholder="1800" id="payed" min="500" step="100" value="<?=$appointement['payed']?>">
+        <label for="etat">Ètat</label>
         <select name="etat" id="etat">
             <option value="En cours">En cours</option>
             <option value="annuler">Annuler</option>
@@ -71,7 +74,11 @@ else{
             var payed = document.getElementById("payed").value;
             var rest = total - payed;
             alert("le reste est "+rest)
-      }
+        }
+        function copydate() {
+            var date = document.getElementById("date").value;
+            document.getElementById("time").value = date;
+        }
     </script>
 </div>
 

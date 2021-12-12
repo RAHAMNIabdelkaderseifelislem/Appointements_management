@@ -20,7 +20,7 @@
                 <td>Nom</td>
                 <td>Prenom</td>
                 <td>Type</td>
-                <td>Date</td>
+                <td>Date & Temps</td>
                 <td>Ètat</td>
                 <td>Autre remarque</td>
                 <td>Payé</td>
@@ -43,8 +43,8 @@
                 <td><?=$appointment['total']?></td>
                 <td><?=$appointment['treturned']?></td>
                 <td class="actions">
-                    <a href="update.php?id=<?=$appointment['id']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                    <a href="delete.php?id=<?=$appointment['id']?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                    <a href="update.php?id=<?=$appointment['id']?>" class="edit"><i class="gg-pen"></i></a>
+                    <a href="delete.php?id=<?=$appointment['id']?>" class="trash"><i class="gg-trash"></i></a>
                 </td>
             </tr>
             <?php endforeach; ?>

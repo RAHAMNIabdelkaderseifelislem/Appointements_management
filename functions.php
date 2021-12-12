@@ -24,13 +24,13 @@
                 <script src="tables/jquery.js"></script>
                 <script src="tables/datatables.min.js"></script>
                 <link href="style.css" rel="stylesheet" type="text/css">
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
             </head>
             <body>
                 <nav class = "navtop">
                     <div>
                         <h1>Dental Corner</h1>
-                        <a href="index.php"><i class ="fas fa-home"></i>Rendez-vous</a>
+                        <a href="main_calendar.php"><i class ="gg-calendar-today"></i>L'agenda</a>
+                        <a href="index.php"><i class ="gg-home-alt"></i>Rendez-vous</a>
                     </div>
                 </nav>
         EOT;

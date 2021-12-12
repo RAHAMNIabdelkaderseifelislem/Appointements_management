@@ -29,10 +29,11 @@ if(!empty($_POST)){
     $treturn = $total - $payed;
     $etat = "En Cours";
     $date = isset($_POST['date']) ? $_POST['date'] : '';
-    $stmt = $pdo->prepare('INSERT INTO dental_corner.appointements VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    $stmt->execute([$id, $first_name, $last_name, $type, $comments, $total, $payed, $treturn, $etat, $date]);
+    $time = isset($_POST['time']) ? $_POST['time'] : '';
+    $stmt = $pdo->prepare('INSERT INTO dental_corner.appointements VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$id, $first_name, $last_name, $type, $comments, $total, $payed, $treturn, $etat, $date, $time]);
 
-    $msg ='Created Successfully!!!';
+    $msg ='Créé avec succès !!!';
 }
 ?>
 <?=template_header('Create')?>
@@ -49,12 +50,14 @@ if(!empty($_POST)){
         <input type="text" name="last_name" placeholder="Rahmani" id="name">
         <input type="text" name="first_name" placeholder="Abd El Kader" id="email">
         <label for="date">Date</label>
+        <label for="time">Le Temps Prévu</label>
+        <input type="datetime-local" name="date" value="<?=date('Y-m-d\TH:i')?>" id="date" onchange="copydate()">
+        <input type="datetime-local" name="time" value="<?=date('Y-m-d\TH:i')?>" id="time">
         <label for="total">Total</label>
-        <input type="datetime-local" name="date" value="<?=date('Y-m-d\TH:i')?>" id="title">
-        <input type="number" name="total" placeholder="1800" id="total" min="500" step="100">
         <label for="payed">Payé</label>
+        <input type="number" name="total" placeholder="1800" id="total" min="500" step="100">
+        <input type="number" name="payed" placeholder="1800" id="payed" min="0" step="100">
         <label for="comments">Autre remarque</label>
-        <input type="number" name="payed" placeholder="1800" id="payed" min="500" step="100">
         <input type="text" name="comments" id="comments">
         <input type="submit" value="Create">
         <input type="button" onclick="calcul()" value="Claculer le  reste">
@@ -68,7 +71,11 @@ if(!empty($_POST)){
             var payed = document.getElementById("payed").value;
             var rest = total - payed;
             alert("le reste est "+rest)
-      }
+        }
+        function copydate() {
+            var date = document.getElementById("date").value;
+            document.getElementById("time").value = date;
+        }
     </script>
 </div>
 

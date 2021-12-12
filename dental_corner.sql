@@ -3,13 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 07:32 AM
+-- Generation Time: Dec 09, 2021 at 03:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+01:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -37,7 +37,8 @@ CREATE TABLE `appointements` (
   `payed` int(120) NOT NULL,
   `treturned` int(120) NOT NULL,
   `Etat` varchar(120) NOT NULL,
-  `adate` datetime NOT NULL
+  `adate` datetime NOT NULL,
+  `tdate` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
